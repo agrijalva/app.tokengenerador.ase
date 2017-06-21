@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title> 
+            <ion-icon name="square"></ion-icon> ASE Token
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label stacked>Server PATH</ion-label>
+            <ion-input #input [(ngModel)] = '_url' type="text" class=""></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>API</ion-label>
+            <ion-input #input [(ngModel)] = '_api' type="text" class=""></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>HTTP_TimeOut</ion-label>
+            <ion-input #input [(ngModel)] = '_timeout' type="text"></ion-input>
+        </ion-item>
+
+    </ion-list>
+
+    <button 
+        ion-button 
+        (click)='SaveSettings();' 
+        large 
+        [disabled] = "!isenabled" 
+        block 
+        color='light'>
+        Guardar Settings
+    </button>
+</ion-content>

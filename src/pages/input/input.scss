@@ -1,0 +1,435 @@
+page-input {
+    $break-small-width: 320px;
+    $break-small-height: 600px;
+    $break-min-height: 500px;
+    
+    .list{
+        margin-top: 40px;
+    }
+
+    .item{
+        padding-left: 0 !important;
+    }
+
+    .button-outline-ios-light, .button-outline-md-light{
+        border-color: #999;
+        color: #999;
+        background-color: transparent;
+    }
+
+    .list-ios > .item-block:first-child {
+        border-top: none !important;
+    }
+
+    .orden .text-input{
+        font-size: 20px;
+        text-align: center;
+        font-family: 'Roboto', sans-serif !important;
+        color: #333;
+    }
+
+    .title-ios{
+        // padding-left:  0px !important;
+        // padding-right: 0px;
+    }
+
+    // Reglas de Dialog Cal
+    .dialog-cal{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1024;
+    }
+
+    .dialog-cal-panel{
+        background-color: white;
+        width: 90%;
+        height: 80%;
+        margin-left: calc( 50% - 45%);
+        border-radius: 5px;
+        overflow: hidden;
+
+        -webkit-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.43);
+        -moz-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.43);
+        box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.43);
+
+        position: relative;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+
+        @media screen and (max-height: $break-small-height) {
+            height: 95%;   
+        }
+    }
+
+    .dialog-cal-panel-head{
+        border-bottom: solid 1px #f4f4f4;
+        height: 53px;
+        padding-left: 15px;
+        // text-align: center !important;
+    }
+
+    .panel-head-title{
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 7px;
+        overflow: hidden;
+    }
+
+    .panel-head-subtitle{
+        font-size: 12px;
+        color: #666;
+    }
+
+    .dialog-cal-panel-content{
+        height: calc(100% - 130px);
+
+        @media screen and (max-height: $break-min-height) {
+            overflow-y: auto; 
+        }
+    }
+
+    .button{
+        @media screen and (max-height: $break-min-height) {
+            background-color: #edbf57; 
+        }
+    }
+
+    .peque{
+        font-size: 12px;
+        color: #666;
+        padding-left: 15px;
+        margin-bottom: 20px;
+
+        @media screen and (max-height: $break-small-height) {
+            margin-bottom: 10px;
+        }
+    }
+
+    .observaciones{
+        border: none;
+        border-top: solid 1px #f4f4f4;
+        border-bottom: solid 1px #f4f4f4;
+        width: 100%;
+        padding: 15px;
+        margin-top: 25px;
+        resize: none;
+
+        @media screen and (max-height: $break-small-height) {
+            margin-top: 10px;
+        }
+    }
+
+    .salioBien, .salioMal{
+        margin-top: 15px;
+    }
+
+    .cal-titulo{
+        font-weight: bold;
+        text-align: center;
+        color: #333;
+    }
+
+    .center{
+        text-align: center;
+    }
+
+    .dialog-cal-panel-footer{
+        overflow: hidden;
+        background-color: #edbf57;
+        height: 60px !important;
+
+        @media screen and (max-height: $break-min-height) {
+            height: 70px !important;
+        }
+    }
+
+    .dialog-cal-panel-footer [col-6] {
+        padding: 0 !important;
+    }
+
+    .dialog-cal-panel-footer .col{
+        padding: 0 !important;
+    }
+
+    .dialog-cal-panel-footer .grid{
+        padding: 0 !important;
+    }
+
+    .dialog-cal-panel-footer .button-md{
+        box-shadow: none !important;
+        height: 60px;
+        margin: 0 !important;
+    }
+
+    // Reglas para estrellas
+    #form {
+        width: 250px;
+        margin: 0 auto;
+        height: 50px;
+    }
+
+    #form p {
+        text-align: center;
+    }
+
+    #form label {
+        font-size: 20px;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    .clasificacion label {
+        color: grey;
+        font-size: 35px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .clasificacion {
+        direction: rtl;
+        unicode-bidi: bidi-override;
+        width: 249px;
+        margin: 0 auto;
+
+        @media screen and (max-width: $break-small-width) {
+            width: 90%;
+        }
+    }
+
+    label:hover,
+    label:hover ~ label {
+        color: orange;
+    }
+
+    input[type="radio"]:checked ~ label {
+        color: orange;
+    }
+    // Reglas para estrellas
+    // /-Reglas de Dialog Cal
+
+    #ck-1 {
+        margin:4px;
+        background-color:#f4f4f4;
+        border-radius: 0px;
+        overflow:auto;
+        float:left;
+        width: 80%;
+        text-align:center;
+    }
+
+    #ck-1 label {
+        float:left;
+        width:100%;
+    }
+
+    #ck-1 label span {
+        text-align:center;
+        padding:8px 0px;
+        display:block;
+    }
+
+    #ck-1 label input {
+        position:absolute;
+        top:-20px;
+        visibility: hidden;
+    }
+
+    #ck-1 input:checked + span {
+        background-color:orange;
+        color:#fff;
+    }
+
+    // - 2
+    #ck-2 {
+        margin:4px;
+        background-color:#f4f4f4;
+        border-radius: 0px;
+        overflow:auto;
+        float:left;
+        width: 80%;
+        text-align:center;
+    }
+
+    #ck-2 label {
+        float:left;
+        width:100%;
+    }
+
+    #ck-2 label span {
+        text-align:center;
+        padding:8px 0px;
+        display:block;
+    }
+
+    #ck-2 label input {
+        position:absolute;
+        top:-20px;
+        visibility: hidden;
+    }
+
+    #ck-2 input:checked + span {
+        background-color:orange;
+        color:#fff;
+    }
+
+    // - 2
+    #ck-3 {
+        margin:4px;
+        background-color:#f4f4f4;
+        border-radius: 0px;
+        overflow:auto;
+        float:left;
+        width: 80%;
+        text-align:center;
+    }
+
+    #ck-3 label {
+        float:left;
+        width:100%;
+    }
+
+    #ck-3 label span {
+        text-align:center;
+        padding:8px 0px;
+        display:block;
+    }
+
+    #ck-3 label input {
+        position:absolute;
+        top:-20px;
+        visibility: hidden;
+    }
+
+    #ck-3 input:checked + span {
+        background-color:orange;
+        color:#fff;
+    }
+
+    // - 4
+    #ck-4 {
+        margin:4px;
+        background-color:#f4f4f4;
+        border-radius: 0px;
+        overflow:auto;
+        float:left;
+        width: 80%;
+        text-align:center;
+    }
+
+    #ck-4 label {
+        float:left;
+        width:100%;
+    }
+
+    #ck-4 label span {
+        text-align:center;
+        padding:8px 0px;
+        display:block;
+    }
+
+    #ck-4 label input {
+        position:absolute;
+        top:-20px;
+        visibility: hidden;
+    }
+
+    #ck-4 input:checked + span {
+        background-color:orange;
+        color:#fff;
+    }
+
+    // - 5
+    #ck-5 {
+        margin:4px;
+        background-color:#f4f4f4;
+        border-radius: 0px;
+        overflow:auto;
+        float:left;
+        width: 80%;
+        text-align:center;
+    }
+
+    #ck-5 label {
+        float:left;
+        width:100%;
+    }
+
+    #ck-5 label span {
+        text-align:center;
+        padding:8px 0px;
+        display:block;
+    }
+
+    #ck-5 label input {
+        position:absolute;
+        top:-20px;
+        visibility: hidden;
+    }
+
+    #ck-5 input:checked + span {
+        background-color:orange;
+        color:#fff;
+    }
+
+    .toolbar-background{
+        background-color: #212d3b !important;
+    }
+
+    .toolbar-title{
+        color: white !important;
+    }
+
+    .bar-buttons .icon{
+        color: white !important;
+    }
+
+    .content{
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .item-md.item-input.input-has-focus .item-inner{
+        border-bottom-color: #edbf57;
+        box-shadow: inset 0 -1px 0 0 #edbf57;
+    }
+
+    .list-md .item-input.input-has-focus:last-child{
+        border-bottom-color: #edbf57;
+        box-shadow: inset 0 -1px 0 0 #edbf57;
+    }
+
+    .input-has-focus .label-md[floating], .input-has-focus .label-md[stacked]{
+        color: #edbf57;
+    }
+
+    .list-md .item-block .item-inner {
+        border-bottom: 1px solid #333;
+        color: #333;
+    }
+
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+        color: #333;
+    }
+
+    .item-md {
+        background-color: transparent !important;
+    }
+
+    .legales{
+        cursor: pointer;
+        font-size: 12px;
+        color: #333;
+        margin-top: 70px;
+        width: 130px;
+        margin-left: calc( 50% - 65px );
+    }
+}
+

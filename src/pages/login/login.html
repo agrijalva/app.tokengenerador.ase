@@ -1,0 +1,31 @@
+<ion-content padding>
+	<div class="fondo">
+		<div class="logo"> 
+	    	<img src="assets/images/logoASE.png" width="150">
+	    	<h1>Autorizaciones</h1>
+		</div>
+
+		<ion-list>
+		  	<ion-item>
+		    	<ion-label floating> <ion-icon ios="ios-contact" md="md-contact"></ion-icon> Usuario</ion-label>
+		    	<ion-input type="text" [(ngModel)] = 'usuario'></ion-input>
+		  	</ion-item>
+
+		  	<ion-item>
+		    	<ion-label floating> <ion-icon ios="ios-unlock" md="md-unlock"></ion-icon> Contraseña</ion-label>
+		    	<ion-input type="password" [(ngModel)] = 'password'></ion-input>
+		  	</ion-item>
+		</ion-list>
+
+	    <button ion-button (click)='Login();' [disabled] = "!isenabled" full color="light">
+	    	Iniciar Sesión
+	    </button>
+
+	    <!-- Unicamente mostrar cuando este en modo desarrollo -->
+		<div style="color: white; font-size: 12px; margin: 10px auto;" (click)='Settings();' *ngIf = "Desarrollo"> 
+			<ion-icon ios="ios-settings" md="md-settings"></ion-icon> Settings
+		</div>
+
+		<div class="legales" (click)='openModal();' >Términos y condiciones</div>
+    </div>
+</ion-content>
