@@ -25102,6 +25102,7 @@ page-login .scroll-content {
   background-image: url("../assets/images/ASE.jpg");
   background-repeat: no-repeat;
   background-position: center 0px;
+  background-size: 100% auto;
 }
 
 page-login .item-md.item-input.input-has-focus .item-inner {

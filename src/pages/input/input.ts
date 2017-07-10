@@ -213,7 +213,7 @@ export class InputPage {
 
                         // Validamos que el usuario tenga permiso de realizar el token en la operacion
                         if( !flagInd ){
-                            this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token. (no tienes permisos en esta operación)' );
+                            this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (no tienes permisos en esta operación)
                         }
                         else{
                             if( data[0].tipo == 1 && data[0].idEstatusOrden != 4 ){
@@ -221,7 +221,7 @@ export class InputPage {
                                     SaveToken = true;
                                 }
                                 else{
-                                    this.Alert( 'Autorizaciones Utilidad', 'No cuenta con los privilegios necesarios para realizar el Token. (Debes ser administrador)' );
+                                    this.Alert( 'Autorizaciones Utilidad', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (Debes ser administrador)
                                 }
                             }
                             else if( data[0].idEstatusOrden == 4 || data[0].idEstatusOrden == 5 ){ // ( Administrador )}
@@ -229,7 +229,7 @@ export class InputPage {
                                     SaveToken = true;
                                 }
                                 else{
-                                    this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token. (Es Aprobacion)' );
+                                    this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (Es Aprobacion)
                                 }
                             }
                             else if( data[0].idEstatusOrden == 6 ){ // ( Administrador )}
@@ -237,7 +237,7 @@ export class InputPage {
                                     SaveToken = true;
                                 }
                                 else{
-                                    this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token. (Eres cliente)' );
+                                    this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (Eres cliente)
                                 }
                             }
                             else if( data[0].idEstatusOrden == 7 ){ // ( Cliente )
@@ -245,7 +245,7 @@ export class InputPage {
                                     SaveToken = true;
                                 }
                                 else{
-                                    this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token.( Eres administrador )' );
+                                    this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // ( Eres administrador )
                                 }
                             }
                         }
@@ -268,7 +268,7 @@ export class InputPage {
                     this.isenabled = true;
                 },
                 error =>{
-                    this.Alert( 'Autorizaciones', 'No hay conexion a internet. Porfavor, intentelo nuevamente.' );
+                    this.Alert( 'Autorizaciones', 'No hay conexión a internet. Porfavor, intentelo nuevamente.' );
                     this.isenabled = true;
                 });
         }
@@ -367,7 +367,7 @@ export class InputPage {
                         console.log( data );
                     },
                     error =>{
-                        this.Alert( 'Autorizaciones', 'No hay conexion a internet. Porfavor, intentelo nuevamente.' );
+                        this.Alert( 'Autorizaciones', 'No hay conexión a internet. Porfavor, intentelo nuevamente.' );
                         this.isenabled = true;
                     });
                 

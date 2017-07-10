@@ -26,17 +26,12 @@ export class MyApp {
             statusBar.styleDefault();
             splashScreen.hide();
 
-            // Validamos la URL por Default de la aplicación que dara los servicios a la app
-            if( localStorage.getItem("_URL") == "" ){
-                localStorage.setItem("_URL", 'http://192.168.20.9:5300/api/mobile/');
-            }
-
             // Tiempo de espera para peticion a servidores
             // localStorage.setItem("Http_Timeout", '10');
 
             // 0 => Modo Desarrollo deshabilitado.
             // 1 => Modo Desarrollo habilitado.
-            localStorage.setItem("Desarrollo", '1');
+            localStorage.setItem("Desarrollo", '0');
 
             // Tiempo de espera para peticion a servidores
             localStorage.setItem("Http_Timeout", '10');

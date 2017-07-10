@@ -34,6 +34,11 @@ export class LoginPage {
                  public modalCtrl: ModalController, 
                  private screenOrientation: ScreenOrientation )
     {
+        if( localStorage.getItem("_URL") == "" || localStorage.getItem("_URL") === null ){
+            // localStorage.setItem("_URL", 'http://192.168.20.9:5300/api/mobile/'); // Desarrollo
+            localStorage.setItem("_URL", 'http://189.204.141.193:5300/api/mobile/'); // Produccion
+        }
+
         this.usuario      = localStorage.getItem("Usuario_Name");
         this.URL          = localStorage.getItem("_URL");
         this.Desarrollo   = ( localStorage.getItem("Desarrollo") == "0" ) ? false : true;
@@ -118,7 +123,7 @@ export class LoginPage {
 
     HttpRequester(){
         let URL_method = this.URL + 'login?usuario='+ encodeURI( this.usuario ) +'&password=' + encodeURI( this.password );
-
+        
         this.http.get(URL_method)
         .timeout( this.Http_Timeout )
         .map( res => res.json() )

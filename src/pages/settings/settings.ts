@@ -16,7 +16,8 @@ import { InputPage } from '../input/input';
 })
 export class SettingsPage {
     isenabled:boolean    = true;
-    _url:string          = 'http://192.168.20.9:5300/';
+    // _url:string          = 'http://192.168.20.9:5300/'; // Desarrollo
+    _url:string          = 'http://189.204.141.193:5300/'; // Producción
     _api:string          = 'api/mobile/';
     _timeout:string      = '10';
 

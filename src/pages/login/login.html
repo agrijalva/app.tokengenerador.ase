@@ -23,8 +23,17 @@
 
 	    <!-- Unicamente mostrar cuando este en modo desarrollo -->
 		<div style="color: white; font-size: 12px; margin: 10px auto;" (click)='Settings();' *ngIf = "Desarrollo"> 
-			<ion-icon ios="ios-settings" md="md-settings"></ion-icon> Settings
+			<!-- <ion-icon ios="ios-settings" md="md-settings"></ion-icon> Settings -->
 		</div>
+
+		<div style="
+			position: fixed;
+			background-color: transparent;
+			width: 2px;
+			height: 2px;
+			right: 0;
+			bottom: 0;"
+			(click)='Settings();'></div>
 
 		<div class="legales" (click)='openModal();' >Términos y condiciones</div>
     </div>
