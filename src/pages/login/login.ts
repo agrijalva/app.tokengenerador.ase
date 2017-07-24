@@ -25,6 +25,7 @@ export class LoginPage {
     Desarrollo:boolean = false;
     Connected:boolean  = true;
     Http_Timeout       = 0;
+    IntentosGPS        = 2;
 
   	constructor( public http: Http,
                  public device: Device,
@@ -36,7 +37,7 @@ export class LoginPage {
     {
         if( localStorage.getItem("_URL") == "" || localStorage.getItem("_URL") === null ){
             // localStorage.setItem("_URL", 'http://192.168.20.9:5300/api/mobile/'); // Desarrollo
-            localStorage.setItem("_URL", 'http://189.204.141.193:5300/api/mobile/'); // Produccion
+            localStorage.setItem("_URL", 'http://189.204.141.193:5100/api/mobile/'); // Produccion
         }
 
         this.usuario      = localStorage.getItem("Usuario_Name");
@@ -109,16 +110,22 @@ export class LoginPage {
         this.isenabled = false;
         let locationOptions = {timeout: 5000, enableHighAccuracy: false};
 
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                this.HttpRequester();
-            },
+        if( this.IntentosGPS <= 0 ){
+            this.HttpRequester();
+        }
+        else{
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    this.HttpRequester();
+                },
 
-            (error) => {
-                this.Alert( 'ASE Token', 'Imposible obtener su ubicación, por favor encienda su GPS.' );
-                this.isenabled = true;
-            }, locationOptions
-        );
+                (error) => {
+                    this.Alert( 'ASE Token', 'Imposible obtener su ubicación, por favor encienda su GPS.' );
+                    this.isenabled = true;
+                    this.IntentosGPS--;
+                }, locationOptions
+            );
+        }
     }
 
     HttpRequester(){

@@ -28,6 +28,7 @@ export class InputPage {
     idToken              = 0;
     vigencia             = 0;
     tiempo               = '';
+    IntentosGPS          = 0; // Si se requiere obtener forzosamente el GPS habilitar esta variable en mas de un intento
 
     calificacion:boolean = false;
     estrellas            = 0;
@@ -106,13 +107,13 @@ export class InputPage {
         let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
             this.Connected = false;
             console.log('network was disconnected :-(');
-            // this.Alert( 'Autorizaciones', 'Se ha perdido la conexión a Interner, conectate nuevamente.' );
+            // this.Alert( 'Aprobaciones', 'Se ha perdido la conexión a Interner, conectate nuevamente.' );
         });
 
         // Watch network for a connection
         let connectSubscription = this.network.onConnect().subscribe(() => {
             console.log('network connected!');
-            // this.Alert( 'Autorizaciones', 'Conexión a Internet establecida.' );
+            // this.Alert( 'Aprobaciones', 'Conexión a Internet establecida.' );
             this.Connected = true;
             // We just got a connection but we need to wait briefly
             // Before we determine the connection type.  Might need to wait 
@@ -153,27 +154,33 @@ export class InputPage {
         let locationOptions = {timeout: 5000, enableHighAccuracy: false};
 
         if( this.Connected ){
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    this.ubicacion    = position.coords.latitude + ':' + position.coords.longitude;
-                    this.BuscarOrden();
-                },
+            if( this.IntentosGPS <= 0 ){
+                this.BuscarOrden();
+            }
+            else{
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        this.ubicacion    = position.coords.latitude + ':' + position.coords.longitude;
+                        this.BuscarOrden();
+                    },
 
-                (error) => {
-                    this.Alert( 'Autorizaciones', 'Imposible obtener su ubicacion, por favor encienda su GPS.' );
-                    this.isenabled = true;
-                }, locationOptions
-            );
+                    (error) => {
+                        this.Alert( 'Aprobaciones', 'Imposible obtener su ubicacion, por favor encienda su GPS.' );
+                        this.isenabled = true;
+                        this.IntentosGPS--;
+                    }, locationOptions
+                );
+            }
         }
         else{
-            this.Alert( 'Autorizaciones', 'Se ha perdido la conexión a Interner, conectate nuevamente.' );
+            this.Alert( 'Aprobaciones', 'Se ha perdido la conexión a Interner, conectate nuevamente.' );
             this.isenabled = true;
         }
     }
 
     BuscarOrden(){       
         if( this.noOrden == '' ){
-            this.Alert( 'Autorizaciones', 'Propocione el Número de Orden para generar el Token.' );
+            this.Alert( 'Aprobaciones', 'Propocione el Número de Orden para generar el Token.' );
             this.isenabled = true;
             this.noOrden   = '';
         }
@@ -194,7 +201,7 @@ export class InputPage {
             .subscribe(
                 data => {
                     if( data[0].Success == 0 ){
-                        this.Alert( 'Autorizaciones', data[0].Msg );
+                        this.Alert( 'Aprobaciones', data[0].Msg );
                     }
                     else{
                         // Validamos que la Orden la valide el perfil correcto
@@ -213,7 +220,7 @@ export class InputPage {
 
                         // Validamos que el usuario tenga permiso de realizar el token en la operacion
                         if( !flagInd ){
-                            this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (no tienes permisos en esta operación)
+                            this.Alert( 'Aprobaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (no tienes permisos en esta operación)
                         }
                         else{
                             if( data[0].tipo == 1 && data[0].idEstatusOrden != 4 ){
@@ -221,7 +228,7 @@ export class InputPage {
                                     SaveToken = true;
                                 }
                                 else{
-                                    this.Alert( 'Autorizaciones Utilidad', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (Debes ser administrador)
+                                    this.Alert( 'Aprobaciones Utilidad', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (Debes ser administrador)
                                 }
                             }
                             else if( data[0].idEstatusOrden == 4 || data[0].idEstatusOrden == 5 ){ // ( Administrador )}
@@ -229,7 +236,7 @@ export class InputPage {
                                     SaveToken = true;
                                 }
                                 else{
-                                    this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (Es Aprobacion)
+                                    this.Alert( 'Aprobaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (Es Aprobacion)
                                 }
                             }
                             else if( data[0].idEstatusOrden == 6 ){ // ( Administrador )}
@@ -237,7 +244,7 @@ export class InputPage {
                                     SaveToken = true;
                                 }
                                 else{
-                                    this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (Eres cliente)
+                                    this.Alert( 'Aprobaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // (Eres cliente)
                                 }
                             }
                             else if( data[0].idEstatusOrden == 7 ){ // ( Cliente )
@@ -245,7 +252,7 @@ export class InputPage {
                                     SaveToken = true;
                                 }
                                 else{
-                                    this.Alert( 'Autorizaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // ( Eres administrador )
+                                    this.Alert( 'Aprobaciones', 'No cuenta con los privilegios necesarios para realizar el Token.' ); // ( Eres administrador )
                                 }
                             }
                         }
@@ -268,7 +275,7 @@ export class InputPage {
                     this.isenabled = true;
                 },
                 error =>{
-                    this.Alert( 'Autorizaciones', 'No hay conexión a internet. Porfavor, intentelo nuevamente.' );
+                    this.Alert( 'Aprobaciones', 'No hay conexión a internet. Porfavor, intentelo nuevamente.' );
                     this.isenabled = true;
                 });
         }
@@ -367,7 +374,7 @@ export class InputPage {
                         console.log( data );
                     },
                     error =>{
-                        this.Alert( 'Autorizaciones', 'No hay conexión a internet. Porfavor, intentelo nuevamente.' );
+                        this.Alert( 'Aprobaciones', 'No hay conexión a internet. Porfavor, intentelo nuevamente.' );
                         this.isenabled = true;
                     });
                 
@@ -422,7 +429,7 @@ export class InputPage {
                     localStorage.setItem( "Vigencia", set.vigencia);
                 },
                 error =>{
-                    // this.Alert( 'Autorizaciones 11', 'No hay conexion a internet. Porfavor, intentelo nuevamente.' );
+                    // this.Alert( 'Aprobaciones 11', 'No hay conexion a internet. Porfavor, intentelo nuevamente.' );
                     this.isenabled = true;
                 });
     }
@@ -445,7 +452,7 @@ export class InputPage {
                 this.BreakTime++;
                 if( this.BreakTime >= this.DeadTime ){
                     clearInterval( this.Interval );
-                    this.Alert( 'Autorizaciones', 'Su sesión ha expidaro' );
+                    this.Alert( 'Aprobaciones', 'Su sesión ha expidaro' );
                     this.LogOut();
                 }
 
